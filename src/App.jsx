@@ -107,8 +107,8 @@ function App() {
           View Mode
         </button>
 
-        <form action="">
-          <h1>General Information</h1>
+        <form action="" className="py-5">
+          <h1 className="py-5">General Information</h1>
           <div className="grid grid-cols-2 gap-5">
             <label htmlFor="name">Name</label>
             <input
@@ -145,44 +145,49 @@ function App() {
               id="github"
               defaultValue={PersonalInformation.github}
             />
-            <button
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                let obj = {};
-                obj.name = e.target.form.name.value;
-                obj.email = e.target.form.email.value;
-                obj.location = e.target.form.location.value;
-                obj.contact = e.target.form.contact.value;
-                obj.github = e.target.form.github.value;
-                setPersonalInformation(obj);
-              }}
-            >
-              Save this part
-            </button>
           </div>
-          <hr />
-        </form>
-        <h1>Education</h1>
-        <div>
           <button
-            onClick={() =>
-              setEducationInformation([...EducationalInformation, {}])
-            }
-          >
-            +
-          </button>
-          <div>{EducationalInformation.length}</div>
-          <button
-            disabled={EducationalInformation.length == 0}
-            onClick={() => {
-              const info = [...EducationalInformation];
-              info.pop();
-              setEducationInformation(info);
+            className="my-5"
+            type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              let obj = {};
+              obj.name = e.target.form.name.value;
+              obj.email = e.target.form.email.value;
+              obj.location = e.target.form.location.value;
+              obj.contact = e.target.form.contact.value;
+              obj.github = e.target.form.github.value;
+              setPersonalInformation(obj);
             }}
           >
-            -
+            Save this part
           </button>
+          <hr />
+        </form>
+        <div className="flex place-content-evenly pt-5 w-full align-middle">
+          <h1>Education</h1>
+          <div className="flex align-middle w-1/4 place-content-evenly">
+            <button
+              onClick={() =>
+                setEducationInformation([...EducationalInformation, {}])
+              }
+            >
+              +
+            </button>
+            <div className="flex h-1/2 mt-4">
+              {EducationalInformation.length}
+            </div>
+            <button
+              disabled={EducationalInformation.length == 0}
+              onClick={() => {
+                const info = [...EducationalInformation];
+                info.pop();
+                setEducationInformation(info);
+              }}
+            >
+              -
+            </button>
+          </div>
         </div>
         <form>
           {educationForm}
@@ -206,26 +211,30 @@ function App() {
           </button>
         </form>
         <hr />
-        <h1>Experience</h1>
-        <div>
-          <button
-            disabled={ExperienceInformation.length == 0}
-            onClick={() => {
-              const info = [...ExperienceInformation];
-              info.pop();
-              setExperienceInformation(info);
-            }}
-          >
-            -
-          </button>
-          <div>{ExperienceInformation.length}</div>
-          <button
-            onClick={() =>
-              setExperienceInformation([...ExperienceInformation, {}])
-            }
-          >
-            +
-          </button>
+        <div className="flex place-content-evenly pt-5 w-full align-middle">
+          <h1>Experience</h1>
+          <div className="flex align-middle w-1/4 place-content-evenly">
+            <button
+              onClick={() =>
+                setExperienceInformation([...ExperienceInformation, {}])
+              }
+            >
+              +
+            </button>
+            <div className="flex h-1/2 mt-4">
+              {ExperienceInformation.length}
+            </div>
+            <button
+              disabled={ExperienceInformation.length == 0}
+              onClick={() => {
+                const info = [...ExperienceInformation];
+                info.pop();
+                setExperienceInformation(info);
+              }}
+            >
+              -
+            </button>
+          </div>
         </div>
         <form>
           {experienceForm}
@@ -280,7 +289,10 @@ function App() {
     }
     return (
       <>
-        <button onClick={() => setEditView((EditView) => (EditView + 1) % 2)}>
+        <button
+          className="my-5"
+          onClick={() => setEditView((EditView) => (EditView + 1) % 2)}
+        >
           Edit View
         </button>
         <div>
@@ -289,7 +301,9 @@ function App() {
             <h2>{PersonalInformation.location}</h2>
             <h2>{PersonalInformation.email}</h2>
             <h2>{PersonalInformation.contact}</h2>
-            <h2>{PersonalInformation.github}</h2>
+            <a href={`http://github.com/${PersonalInformation.github}`}>
+              {PersonalInformation.github}
+            </a>
           </div>
           <hr />
           <div className="py-5 ">
